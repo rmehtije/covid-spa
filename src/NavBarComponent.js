@@ -2,7 +2,9 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
 function NavBarComponent() {
-
+// Navbrar component = navigacqja v kotoroj pokachto tol'ko nazvanie i logo
+// Vse fotografii dolzhnq nahoditsa v papke public
+// <Navbar.Brand = link / ssylka
     return (
         <Navbar bg="light" expand="lg">
             <Container>
