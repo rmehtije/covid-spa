@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Container } from "react-bootstrap";
+import ChartsComponent from "./ChartsComponent";
 import CityListComponent from "./CityListComponent";
 
 function BodyComponent () {
@@ -9,7 +10,7 @@ function BodyComponent () {
     return (
         <Container className="mt-4">
             <CityListComponent setSelectedCity={setSelectedCity} />
-            <h2>{selectedCity}</h2>
+            <ChartsComponent />
         </Container>
     )
 }
