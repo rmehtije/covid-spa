@@ -4,10 +4,10 @@ import Tabs from 'react-bootstrap/Tabs';
 import RankedChartsComponent from "./RankedChartsComponent";
 import ReportedCasesComponent from "./ReportedCasesComponent";
 
-function ChartsComponent() {
+function ChartsComponent(props) {
 
     const [selectedTab, setSelectedTab] = useState('');
-
+    console.log('chartscomponent', props.countryData);
     return (
         <Tabs
             defaultActiveKey="reposrted-cases"
