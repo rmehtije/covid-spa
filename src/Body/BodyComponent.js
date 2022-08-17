@@ -7,7 +7,7 @@ import { readCovidData } from '../dataService/fileService';
 function BodyComponent () {
 
     const [selectedCountry, setSelectedCountry] = useState(null);
-    const [covidData, setCovidData] = useState(null);
+    const [covidData, setCovidData] = useState({});
     const [countryList, setCountryList] = useState([]);
     const [countryData, setCountryData] = useState(null);
 
@@ -39,7 +39,7 @@ function BodyComponent () {
     return (
         <Container className="mt-4">
             <CountryListComponent countryList={countryList} handleCountrySelect={handleCountrySelect} />
-            <ChartsComponent countryData={countryData}/>
+            <ChartsComponent countryData={countryData} covidData={covidData} countryCount={Object.keys(covidData).length} />
         </Container>
     )
 }
