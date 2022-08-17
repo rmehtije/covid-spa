@@ -9,8 +9,14 @@ function ReportedCasesComponent(props) {
     const formDom = useRef(null);
     const [chartData, setChartData] = useState(null); 
 
-    const yearData = props.countryData?.data.filter(data => new Date(data.date).getFullYear() === 2022);
-    console.log('yearData', yearData);
+    // const yearData = props.countryData?.data.filter(data => new Date(data.date).getFullYear() === 2022);
+    const initialData = props.covidData['OWID_WRL']?.data?.map(data => {
+        return {
+            key: new Date(data.date),
+            data: data.new_deaths || 0,
+        }
+    });
+
 
     function handleOnInput(e) {
         const [deathCount, confirmedCases, dailyNewValues, cumulativeMode] = formDom.current;
@@ -26,7 +32,7 @@ function ReportedCasesComponent(props) {
             dataObject = 'total_cases';
         }
 
-        setChartData(yearData.map(data => {
+        setChartData(props.countryData?.data?.map(data => {
             return {
                 key: new Date(data.date),
                 data: data[dataObject] || 0,
@@ -64,7 +70,7 @@ function ReportedCasesComponent(props) {
                 </Form>
             </Col>
             <Col sm={8}>
-                {chartData ? <AreaChart data={chartData} /> : ""}
+                {(chartData || initialData) ? <AreaChart data={chartData || initialData} /> : ""}
             </Col>
         </Row>
     </>);

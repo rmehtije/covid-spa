@@ -1,23 +1,41 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import { BarChart } from 'reaviz';
 
-function RankedChartsComponent() {
+function RankedChartsComponent(props) {
     const formDom = useRef(null);
+    const [chartData, setCartData] = useState(null);
+
+    const initialData = Object.values(props.covidData).slice(0, 9).map(data => {
+        return {
+            key: data.location,
+            data: data.data.reverse()[0].total_deaths || 0,
+        }
+    });
 
     function handleOnInput(e) {
         const [totalNumberOfDeaths, totalNumberOfCases, countriesCount] = formDom.current;
 
-        console.log('totalNumberOfDeaths', totalNumberOfDeaths.checked);
-        console.log('totalNumberOfCases', totalNumberOfCases.checked);
-
+        let objectData = 'total_deaths';
+        if (totalNumberOfCases.checked) {
+            objectData = 'total_cases';
+        }
         const selectedCountriesCount = [...countriesCount].find(option => option.selected === true);
 
+        setCartData(Object.values(props.covidData).slice(0, selectedCountriesCount.value).map(data => {
+            return {
+                key: data.location,
+                data: data.data.reverse()[0][objectData] || 0,
+            }
+        }));
 
-        console.log('selectedCountriesCount', selectedCountriesCount.value);
+    }
 
+    const countryListCount = [];
+    for (let i = 1; i <= props.countryCount; i++) {
+        countryListCount.push((<option key={i} value={i}>{i}</option>));
     }
 
     return (<>
@@ -36,24 +54,20 @@ function RankedChartsComponent() {
                         label={`Total number of cases`}
                     />
                     <label className="mt-2">Select countries count</label>
-                    <Form.Select defaultValue="4">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </Form.Select>
+                    {countryListCount.length ?
+                        <Form.Select defaultValue="10">
+                            {countryListCount}
+                        </Form.Select>
+                        : ""
+                    }
+
                 </Form>
             </Col>
             <Col sm={8}>
-                <BarChart
-                    data={[
-                        { key: 'DLP', data: 13 },
-                        { key: 'SIEM', data: 2 },
-                        { key: 'Endpoint', data: 7 }
-                    ]}
-                />
+                {chartData || initialData ? <BarChart
+                    data={chartData || initialData}
+                /> : ""}
+
             </Col>
         </Row>
     </>);

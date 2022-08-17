@@ -20,7 +20,7 @@ function ChartsComponent(props) {
                 <ReportedCasesComponent title={selectedTab} {...props}/>
             </Tab>
             <Tab eventKey="ranked-charts" title="Ranked charts">
-                <RankedChartsComponent title={selectedTab} />
+                <RankedChartsComponent title={selectedTab} {...props}/>
             </Tab>
         </Tabs>
     );
