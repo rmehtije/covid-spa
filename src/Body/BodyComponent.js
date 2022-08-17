@@ -14,17 +14,26 @@ function BodyComponent () {
     function handleCountrySelect (countryKey) {
         setCountryData(covidData[countryKey]);
     }
-
+    // await ispolzujetsa tolko v async funkcqii
+    // zapuskajem zapros polu4enija dannqh, dozhedajemsa otveta i vozvrashajem rezultat
+    // catch vqdast nam jesli budut propblemy s zaprosom
+    // try pytajetsa vypolnit' vsjo
+    // catch lovit oshqbki i peredajot oshibku v 'error' peremennuju
     async function getData() {
         try {
             const data = await readCovidData();
             console.log(data);
             return data;
-        } catch (e) {
-            console.error(e);
+        } catch (error) {
+            console.error(error);
         }
     }
-    
+    // useEffect eto reakt hook kotoryj zapusajetsa tolko posle togo kak ves' komponent obrabotalsa
+    // useEffect v otli4ii useState ne zapuskajet novuju obrabotku komponenta
+    // v useEffect mozhno postavit' triggerq kotorqje budut upravljat' jego zapusku.
+    // my postavili null dlja togo 4toby ubeditsa 4to useEfect zapustitsa tolko odin raz pri ppervoj obrabotki componenta
+    // then funkcqija zapuskajetsa kogda prevedushija funkcqja vqpolnila return, tojest zakon4ilas.
+    // then peredajot otvet s etoj prevedushij funkcqii
     useEffect(() => {
         getData().then((data) => {
             setCovidData(data);

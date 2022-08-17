@@ -5,7 +5,9 @@ import Form from 'react-bootstrap/Form';
 import { AreaChart } from 'reaviz';
 
 function ReportedCasesComponent(props) {
-
+    // useRef hook nam pomogajet to4e4no podobratsja v DOM strukturu elementa
+    // v ljubom elemente my mozhem nazna4it atribut ref="" i peredat' jego DOM v ljuboj parametr
+    // DOM derzhatsa v .current objekte parametra
     const formDom = useRef(null);
     const [chartData, setChartData] = useState(null); 
 
@@ -33,6 +35,7 @@ function ReportedCasesComponent(props) {
             }
         }));
     }
+    // ref="formDom" - my peredali DOM strukturu formy dlja polu4enija polzovatel'skogo vybora
     return (<>
         <div>{props.title}</div>
         <Row>

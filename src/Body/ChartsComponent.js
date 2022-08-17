@@ -7,7 +7,7 @@ import ReportedCasesComponent from "./ReportedCasesComponent";
 function ChartsComponent(props) {
 
     const [selectedTab, setSelectedTab] = useState('');
-
+    // {...props} my peredajom vse property kotorqje bqli nazna4ennq v ChartsComponent peredajom v ReportedCa...
     return (
         <Tabs
             defaultActiveKey="reposrted-cases"
