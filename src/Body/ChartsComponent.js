@@ -3,6 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import RankedChartsComponent from "./RankedChartsComponent";
 import ReportedCasesComponent from "./ReportedCasesComponent";
+import CovidTodayComponent from './CovidTodayComponent';
 
 function ChartsComponent(props) {
 
@@ -10,12 +11,15 @@ function ChartsComponent(props) {
 
     return (
         <Tabs
-            defaultActiveKey="reposrted-cases"
+            defaultActiveKey="today-info"
             id="fill-tab-example"
             className="mb-3"
             fill
             onSelect={(eventKey) => setSelectedTab(eventKey)}
         >
+            <Tab eventKey="today-info" title="Covid Today">
+                <CovidTodayComponent covidTodayData={props.covidTodayData}/>
+            </Tab>
             <Tab eventKey="reposrted-cases" title="Reported cases">
                 <ReportedCasesComponent title={selectedTab} {...props}/>
             </Tab>

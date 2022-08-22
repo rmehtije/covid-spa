@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import ChartsComponent from "./ChartsComponent";
 import CountryListComponent from "./CountryListComponent";
 import { readCovidData } from '../dataService/fileService';
+import { getTodayCovidData } from "../dataService/apiService";
 
 function BodyComponent () {
 
@@ -10,10 +11,7 @@ function BodyComponent () {
     const [covidData, setCovidData] = useState({});
     const [countryList, setCountryList] = useState([]);
     const [countryData, setCountryData] = useState(null);
-
-    function handleCountrySelect (countryKey) {
-        setCountryData(covidData[countryKey]);
-    }
+    const [covidTodayData, setCovidTodayData] = useState(null);
 
     async function getData() {
         try {
@@ -34,12 +32,17 @@ function BodyComponent () {
             }
             setCountryList(list);
         });
+        getTodayCovidData().then(data => setCovidTodayData(data));
     }, [null]);
 
     return (
         <Container className="mt-4">
-            <CountryListComponent countryList={countryList} handleCountrySelect={handleCountrySelect} />
-            <ChartsComponent countryData={countryData} covidData={covidData} countryCount={Object.keys(covidData).length} />
+            <ChartsComponent 
+                countryList={countryList}
+                covidTodayData={covidTodayData} 
+                countryData={countryData} 
+                covidData={covidData} 
+                countryCount={Object.keys(covidData).length} />
         </Container>
     )
 }

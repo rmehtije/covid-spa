@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/App.scss';
 import Container from 'react-bootstrap/Container';
 import BodyComponent from './Body/BodyComponent';
 import NavBarComponent from './NavBarComponent';

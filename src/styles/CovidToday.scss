@@ -1,0 +1,22 @@
+$caruselWidth: 100%;
+$caruselHeight: 300px;
+$textColor: black;
+$textSize: 40px;
+
+.wrapper {
+    width: $caruselWidth;
+    height: $caruselHeight;
+}
+
+.caption {
+    position: initial !important;
+}
+
+.caption h3 {
+    color: $textColor;
+}
+
+.caption p {
+    font-size: $textSize;
+    color: $textColor;
+}

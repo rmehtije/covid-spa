@@ -3,36 +3,41 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import { AreaChart } from 'reaviz';
+import CountryListComponent from './CountryListComponent';
 
 function ReportedCasesComponent(props) {
 
     const formDom = useRef(null);
-    const [chartData, setChartData] = useState(null); 
+    const [chartData, setChartData] = useState(null);
+    const [countryData, setCountryData] = useState(null);
 
     // const yearData = props.countryData?.data.filter(data => new Date(data.date).getFullYear() === 2022);
-    const initialData = props.covidData['OWID_WRL']?.data?.map(data => {
+    const initialData = countryData?.data?.map(data => {
         return {
             key: new Date(data.date),
             data: data.new_deaths || 0,
         }
     });
 
+    function handleCountrySelect(countryKey) {
+        setCountryData(props.covidData[countryKey]);
+    }
 
     function handleOnInput(e) {
         const [deathCount, confirmedCases, dailyNewValues, cumulativeMode] = formDom.current;
-        
+
         let dataObject = 'new_deaths';
-        if(deathCount.checked && cumulativeMode.checked) {
+        if (deathCount.checked && cumulativeMode.checked) {
             dataObject = 'total_deaths';
         }
-        if(confirmedCases.checked && dailyNewValues.checked) {
+        if (confirmedCases.checked && dailyNewValues.checked) {
             dataObject = 'new_cases';
         }
-        if(confirmedCases.checked && cumulativeMode.checked) {
+        if (confirmedCases.checked && cumulativeMode.checked) {
             dataObject = 'total_cases';
         }
 
-        setChartData(props.countryData?.data?.map(data => {
+        setChartData(countryData?.data?.map(data => {
             return {
                 key: new Date(data.date),
                 data: data[dataObject] || 0,
@@ -40,7 +45,7 @@ function ReportedCasesComponent(props) {
         }));
     }
     return (<>
-        <div>{props.title}</div>
+        <CountryListComponent countryList={props.countryList} handleCountrySelect={handleCountrySelect} />
         <Row>
             <Col sm={4}>
                 <Form ref={formDom} onInput={handleOnInput}>
@@ -70,7 +75,7 @@ function ReportedCasesComponent(props) {
                 </Form>
             </Col>
             <Col sm={8}>
-                {(chartData || initialData) ? <AreaChart data={chartData || initialData} /> : ""}
+                {(chartData || initialData) ? <AreaChart data={chartData || initialData} height={500} /> : ""}
             </Col>
         </Row>
     </>);
