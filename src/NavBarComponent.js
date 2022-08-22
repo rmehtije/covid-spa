@@ -1,12 +1,14 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function NavBarComponent() {
 
     const [theme, setTheme] = useState('light');
-    
+
     function handleClick() {
         if (theme === 'light') {
             setTheme('dark');
@@ -22,7 +24,7 @@ function NavBarComponent() {
     return (
         <Navbar bg={theme} expand="lg">
             <Container>
-                <Navbar.Brand href="#home">
+                <Link className="navbar-brand" to="/">
                     <img
                         src="/logo.svg"
                         width="50"
@@ -31,7 +33,14 @@ function NavBarComponent() {
                         alt="React Bootstrap logo"
                     />
                     Covid Spa Information
-                </Navbar.Brand>
+                </Link>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Link to="/reported-cases/Estonia" className="nav-link">Reported cases Estonia</Link>
+                        <Link to="/ranked-charts" className="nav-link">Ranked charts</Link>
+                    </Nav>
+                </Navbar.Collapse>
                 <Form.Check
                     type="switch"
                     id="custom-switch"

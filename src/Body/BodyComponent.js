@@ -4,6 +4,7 @@ import ChartsComponent from "./ChartsComponent";
 import CountryListComponent from "./CountryListComponent";
 import { readCovidData } from '../dataService/fileService';
 import { getTodayCovidData } from "../dataService/apiService";
+import RouteComponent from "./RouteCompmonent";
 
 function BodyComponent () {
 
@@ -37,7 +38,7 @@ function BodyComponent () {
 
     return (
         <Container className="mt-4">
-            <ChartsComponent 
+            <RouteComponent 
                 countryList={countryList}
                 covidTodayData={covidTodayData} 
                 countryData={countryData} 

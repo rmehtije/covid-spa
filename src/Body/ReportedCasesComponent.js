@@ -4,22 +4,31 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import { AreaChart } from 'reaviz';
 import CountryListComponent from './CountryListComponent';
+import { useParams } from 'react-router-dom';
 
 function ReportedCasesComponent(props) {
 
     const formDom = useRef(null);
     const [chartData, setChartData] = useState(null);
     const [countryData, setCountryData] = useState(null);
+    const { country } = useParams();
+
+    console.log('country', country);
 
     // const yearData = props.countryData?.data.filter(data => new Date(data.date).getFullYear() === 2022);
-    const initialData = countryData?.data?.map(data => {
+
+    const initialCountry = countryData || 
+        props.covidData[Object.keys(props.covidData).filter(key => props.covidData[key].location === country)];
+    const initialData = initialCountry?.data?.map(data => {
         return {
             key: new Date(data.date),
             data: data.new_deaths || 0,
         }
     });
-
+    console.log('initialData', initialData);
+    console.log('initialCountry', initialCountry);
     function handleCountrySelect(countryKey) {
+        console.log('props.covidData[countryKey]', countryKey);
         setCountryData(props.covidData[countryKey]);
     }
 
@@ -45,7 +54,13 @@ function ReportedCasesComponent(props) {
         }));
     }
     return (<>
-        <CountryListComponent countryList={props.countryList} handleCountrySelect={handleCountrySelect} />
+        {props.countryList.length ?
+            <CountryListComponent
+                countryList={props.countryList}
+                handleCountrySelect={handleCountrySelect}
+                country={country} />
+            : ""}
+
         <Row>
             <Col sm={4}>
                 <Form ref={formDom} onInput={handleOnInput}>
