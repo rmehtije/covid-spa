@@ -2,24 +2,23 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setTheme } from './ReduxState';
 
 function NavBarComponent() {
 
-    const [theme, setTheme] = useState('light');
     const countryId = useSelector(state => state.countryId);
+    const numberOf = useSelector(state => state.numberOf);
+    const theme = useSelector(state => state.theme);
+    const dispatch = useDispatch();
 
     function handleClick() {
         if (theme === 'light') {
-            setTheme('dark');
-            document.body.style.background = 'black';
-            document.getElementsByClassName('navbar-brand')[0].style.color = 'white';
+            dispatch(setTheme('dark'));
         } else {
-            setTheme('light');
-            document.body.style.background = 'white';
-            document.getElementsByClassName('navbar-brand')[0].style.color = 'black';
+            dispatch(setTheme('light'));
         }
     }
 
@@ -40,7 +39,7 @@ function NavBarComponent() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Link to={'/reported-cases/' + countryId} className="nav-link">Reported cases Estonia</Link>
-                        <Link to="/ranked-charts/cases/20" className="nav-link">Ranked charts</Link>
+                        <Link to={'/ranked-charts/' + (numberOf === 'total_cases' ? 'total_cases' : 'total_deaths') + '/20'} className="nav-link">Ranked charts</Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Form.Check
