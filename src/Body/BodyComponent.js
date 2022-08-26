@@ -5,15 +5,17 @@ import CountryListComponent from "./CountryListComponent";
 import { readCovidData } from '../dataService/fileService';
 import { getTodayCovidData } from "../dataService/apiService";
 import RouteComponent from "./RouteCompmonent";
+import { useDispatch } from "react-redux";
+import { setCountryId } from '../ReduxState';
 
 function BodyComponent () {
-
     const [selectedCountry, setSelectedCountry] = useState(null);
     const [covidData, setCovidData] = useState({});
     const [countryList, setCountryList] = useState([]);
     const [countryData, setCountryData] = useState(null);
     const [covidTodayData, setCovidTodayData] = useState(null);
-
+    const dispatch = useDispatch();
+    console.log('render body');
     async function getData() {
         try {
             const data = await readCovidData();
@@ -30,7 +32,11 @@ function BodyComponent () {
             const list = [];
             for (const key in data) {
                 list.push({key, name: data[key].location});
+                if(data[key].location === 'Estonia') {
+                    dispatch(setCountryId(key));
+                }
             }
+            
             setCountryList(list);
         });
         getTodayCovidData().then(data => setCovidTodayData(data));

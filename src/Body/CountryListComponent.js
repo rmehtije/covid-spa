@@ -19,7 +19,7 @@ function CountryListComponent(props) {
                     .filter(country => country.name.includes(inputValue))
                     .map(country => (<option key={country.key}
                         id={country.key}
-                        value={country.name}>
+                        value={country.key}>
                         {country.name}
                     </option>))}
             </Form.Select>

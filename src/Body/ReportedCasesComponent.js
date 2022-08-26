@@ -18,7 +18,7 @@ function ReportedCasesComponent(props) {
     // const yearData = props.countryData?.data.filter(data => new Date(data.date).getFullYear() === 2022);
 
     const initialCountry = countryData || 
-        props.covidData[Object.keys(props.covidData).filter(key => props.covidData[key].location === country)];
+        props.covidData[country];
     const initialData = initialCountry?.data?.map(data => {
         return {
             key: new Date(data.date),

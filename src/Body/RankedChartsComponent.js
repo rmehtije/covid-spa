@@ -3,15 +3,21 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import { BarChart } from 'reaviz';
+import { useParams } from 'react-router-dom';
 
 function RankedChartsComponent(props) {
     const formDom = useRef(null);
     const [chartData, setCartData] = useState(null);
-
-    const initialData = Object.values(props.covidData).slice(0, 9).map(data => {
+    const { cases, count } = useParams();
+    
+    const initialData = Object.values(props.covidData).slice(0, count || 9).map(data => {
+        let objectData = 'total_deaths';
+        if (cases) {
+            objectData = 'total_cases';
+        }
         return {
             key: data.location,
-            data: data.data.reverse()[0].total_deaths || 0,
+            data: data.data.reverse()[0][objectData] || 0,
         }
     });
 
@@ -46,16 +52,17 @@ function RankedChartsComponent(props) {
                         type="radio"
                         name="group1"
                         label={`Total number of deaths`}
-                        defaultChecked={true}
+                        defaultChecked={!cases}
                     />
                     <Form.Check
                         type="radio"
                         name="group1"
                         label={`Total number of cases`}
+                        defaultChecked={cases}
                     />
                     <label className="mt-2">Select countries count</label>
                     {countryListCount.length ?
-                        <Form.Select defaultValue="10">
+                        <Form.Select defaultValue={count}>
                             {countryListCount}
                         </Form.Select>
                         : ""
