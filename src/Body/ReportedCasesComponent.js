@@ -11,6 +11,7 @@ function ReportedCasesComponent(props) {
     const formDom = useRef(null);
     const [chartData, setChartData] = useState(null);
     const [countryId, setCountryId] = useState(null);
+    // useParams eto hook kotorqj nam dajot parametry s url, vovrashajet on objekt so vsemi znachenijami.
     const params = useParams();
     const dispatch = useDispatch();
 

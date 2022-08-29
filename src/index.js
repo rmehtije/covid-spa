@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
+// react-redux eto spomogajushija biblioteka dlja togo 4tobq svjazat' redux s react.
 import { Provider } from "react-redux";
 import { store } from './ReduxState';
 
