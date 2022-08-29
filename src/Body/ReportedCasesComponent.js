@@ -23,6 +23,7 @@ function ReportedCasesComponent(props) {
                 data: data.new_deaths || 0,
             }
         }));
+        dispatch(setNumberOf('total_deaths'));
     }, [id, props.covidData]);
 
     function handleCountrySelect(countryKey) {

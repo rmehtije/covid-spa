@@ -54,13 +54,13 @@ function RankedChartsComponent(props) {
                         type="radio"
                         name="group1"
                         label={`Total number of deaths`}
-                        defaultChecked={!cases}
+                        defaultChecked={cases === 'total_deaths'}
                     />
                     <Form.Check
                         type="radio"
                         name="group1"
                         label={`Total number of cases`}
-                        defaultChecked={cases}
+                        defaultChecked={cases === 'total_cases'}
                     />
                     <label className="mt-2">Select countries count</label>
                     {countryListCount.length ?

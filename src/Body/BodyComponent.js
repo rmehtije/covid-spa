@@ -38,7 +38,7 @@ function BodyComponent (props) {
     )
 }
 
-BodyComponent.defaultPros = {
+BodyComponent.defaultProps = {
     initialCountry: 'Estonia',
 }
 
