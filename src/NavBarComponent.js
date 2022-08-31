@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setTheme } from './ReduxState';
 
 function NavBarComponent() {
-    const url = process.env.REACT_APP_HOME_URL;
+    const url = '/covid-spa';
     const countryId = useSelector(state => state.countryId);
     const numberOf = useSelector(state => state.numberOf);
     const theme = useSelector(state => state.theme);

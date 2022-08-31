@@ -4,7 +4,7 @@ import CovidTodayComponent from './CovidTodayComponent';
 import { Route, Routes } from "react-router-dom";
 
 function RouteComponent (props) {
-    const url = process.env.REACT_APP_HOME_URL;
+    const url = '/covid-spa';
     return (
         <Routes>
             <Route path={`${url}/`} element={<CovidTodayComponent />} />
