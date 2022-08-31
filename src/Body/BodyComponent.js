@@ -25,7 +25,7 @@ function BodyComponent (props) {
             
             setCountryList(list);
         });
-    }, []);
+    }, [dispatch, props.initialCountry]);
 
     return (
         <Container className="mt-4">

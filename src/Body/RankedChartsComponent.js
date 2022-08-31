@@ -24,7 +24,7 @@ function RankedChartsComponent(props) {
     }, [props.covidData, count, cases, props.initialCountryCount]);
 
     function handleOnInput(e) {
-        const [totalNumberOfDeaths, totalNumberOfCases, countriesCount] = formDom.current;
+        const [totalNumberOfCases, countriesCount] = formDom.current;
 
         let objectData = 'total_deaths';
         if (totalNumberOfCases.checked) {

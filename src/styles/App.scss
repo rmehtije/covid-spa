@@ -1,21 +1,14 @@
 @import "~bootstrap/scss/bootstrap";
 
-@mixin bodyColor($class) {
+.light, .dark {
+  height: 100vh;
+}
   
-    @if $class== light {
-        body {background-color: #ffffff;}
-      
-    } @else {
-      body {background-color: #000000;}
-    }
-  }
-  
-  
-  .light {
-    @include bodyColor(light);
+.light {
+  background-color: red;
 
-  }
+}
   
-  .dark {
-    @include bodyColor(dark);
-  }
+.dark {
+  background-color: blue;
+}

@@ -24,7 +24,7 @@ function ReportedCasesComponent(props) {
             }
         }));
         dispatch(setNumberOf('total_deaths'));
-    }, [id, props.covidData]);
+    }, [id, props.covidData, dispatch]);
 
     function handleCountrySelect(countryKey) {
         setCountryId(countryKey);
