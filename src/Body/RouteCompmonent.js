@@ -4,12 +4,13 @@ import CovidTodayComponent from './CovidTodayComponent';
 import { Route, Routes } from "react-router-dom";
 
 function RouteComponent (props) {
+    const url = process.env.REACT_APP_HOME_URL;
     return (
         <Routes>
-            <Route path="/" element={<CovidTodayComponent />} />
-            <Route path="/reported-cases" element={<ReportedCasesComponent {...props}/>} />
-            <Route path="/reported-cases/:country" element={<ReportedCasesComponent {...props}/>} />
-            <Route path="/ranked-charts/:cases/:count" element={<RankedChartsComponent {...props}/>} />
+            <Route path={`${url}/`} element={<CovidTodayComponent />} />
+            <Route path={`${url}/reported-cases`} element={<ReportedCasesComponent {...props}/>} />
+            <Route path={`${url}/reported-cases/:country`} element={<ReportedCasesComponent {...props}/>} />
+            <Route path={`${url}/ranked-charts/:cases/:count`} element={<RankedChartsComponent {...props}/>} />
         </Routes>
     );
 }

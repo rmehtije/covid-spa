@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setTheme } from './ReduxState';
 
 function NavBarComponent() {
-
+    const url = process.env.REACT_APP_HOME_URL;
     const countryId = useSelector(state => state.countryId);
     const numberOf = useSelector(state => state.numberOf);
     const theme = useSelector(state => state.theme);
@@ -27,7 +27,7 @@ function NavBarComponent() {
             <Container>
                 <Link className="navbar-brand" to="/">
                     <img
-                        src="/logo.svg"
+                        src={`${url}/logo.svg`}
                         width="50"
                         height="50"
                         className="d-inline-block"
@@ -38,9 +38,9 @@ function NavBarComponent() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Link to={'/reported-cases/' + countryId} className="nav-link">Reported cases Estonia</Link>
+                        <Link to={`${url}/reported-cases/` + countryId} className="nav-link">Reported cases Estonia</Link>
                         <Link 
-                        to={'/ranked-charts/' + (numberOf === 'total_cases' ? 'total_cases' : 'total_deaths') + '/20'} 
+                        to={`${url}/ranked-charts/` + (numberOf === 'total_cases' ? 'total_cases' : 'total_deaths') + '/20'} 
                         className="nav-link">Ranked charts</Link>
                     </Nav>
                 </Navbar.Collapse>
