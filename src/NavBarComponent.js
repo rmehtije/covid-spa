@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setTheme } from './ReduxState';
 
 function NavBarComponent() {
-    const url = '/covid-spa';
+    const url = process.env.REACT_APP_HOME_URL;
     const countryId = useSelector(state => state.countryId);
     const numberOf = useSelector(state => state.numberOf);
     const theme = useSelector(state => state.theme);
@@ -25,7 +25,7 @@ function NavBarComponent() {
     return (
         <Navbar bg={theme} expand="lg">
             <Container>
-                <Link className="navbar-brand" to="/">
+                <Link className="navbar-brand" to={`${url}/`}>
                     <img
                         src={`${url}/logo.svg`}
                         width="50"

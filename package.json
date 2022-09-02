@@ -2,7 +2,7 @@
   "name": "covid-spa",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rmehtije.github.io/covid-spa",
+  "homepage": ".",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.4",
@@ -24,7 +24,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "start:dev": "NODE_ENV=local npm start",
+    "start:dev": "set NODE_ENV=local&&npm start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
