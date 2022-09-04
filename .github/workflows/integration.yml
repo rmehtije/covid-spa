@@ -23,7 +23,8 @@ jobs:
         REACT_APP_HOME_URL: ${{ secrets.REACT_APP_HOME_URL }}
 
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      run: |
+        npm run deploy
       with:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
         BRANCH: gh-pages
