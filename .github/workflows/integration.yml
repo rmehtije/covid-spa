@@ -23,8 +23,7 @@ jobs:
         REACT_APP_HOME_URL: ${{ secrets.REACT_APP_HOME_URL }}
 
     - name: Deploy
-      run: |
-        npm run deploy
+      run: npm run deploy
       with:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
         BRANCH: gh-pages
