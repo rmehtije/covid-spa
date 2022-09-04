@@ -1,0 +1,13 @@
+name: Integration
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    - name: Deploy
+      with: 
+        target-branch: gh-pages
+      env:
+        REACT_APP_HOME_URL: ${{ secrets.REACT_APP_HOME_URL }}
