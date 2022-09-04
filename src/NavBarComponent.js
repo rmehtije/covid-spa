@@ -8,9 +8,8 @@ import { useDispatch } from 'react-redux';
 import { setTheme } from './ReduxState';
 
 function NavBarComponent() {
-    const url = process.env.REACT_APP_HOME_URL;
-    console.log('url', url);
-    console.log('url', url);
+    const env = `REACT_APP_HOME_URL_${process.env.NODE_ENV}`;
+    const url = process.env[env];
     const countryId = useSelector(state => state.countryId);
     const numberOf = useSelector(state => state.numberOf);
     const theme = useSelector(state => state.theme);

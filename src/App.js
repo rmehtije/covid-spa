@@ -5,7 +5,6 @@ import NavBarComponent from './NavBarComponent';
 import { useSelector } from 'react-redux';
 
 function App() {
-  console.log('env', process.env.NODE_ENV);
   const theme = useSelector(state => state.theme);
   return (
     <div className={theme}>
