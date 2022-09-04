@@ -23,6 +23,9 @@ jobs:
         REACT_APP_HOME_URL: ${{ secrets.REACT_APP_HOME_URL }}
 
     - name: Deploy
-      run: npm run deploy
+      uses: crazy-max/ghaction-github-pages@v1
+      with:
+        target_branch: gh-pages
+        build_dir: build
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
